@@ -20,7 +20,7 @@ app.get('/process_get', function (req, res) {
 
 var server = app.listen(8081, function () {
 
-  var host = "127.0.0.1"
+  var host = server.address().port
   var port = server.address().port
 
   console.log("Example app listening at http://%s:%s", host, port)
