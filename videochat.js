@@ -8,6 +8,29 @@
  Adapted from peerjs documentation
 */
 
+    // This object will take in an array of XirSys STUN / TURN servers
+// and override the original config object
+var customConfig;
+  
+// Call XirSys ICE servers
+$.ajax({
+  url: "https://service.xirsys.com/ice",
+  data: {
+    ident: "jacobaloysious",
+    secret: "9dd274d0-ff18-11e5-a14c-c4dcb64b09c2",
+    domain: "www.randmfun.com",
+    application: "videochat",
+    room: "preschool",
+    secure: 1
+  },
+  success: function (data, status) {
+    // data.d is where the iceServers object lives
+    customConfig = data.d;
+    console.log(customConfig);
+  },
+  async: false
+});
+  
 navigator.getWebcam = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
                          navigator.mozGetUserMedia ||
@@ -16,11 +39,10 @@ navigator.getWebcam = ( navigator.getUserMedia ||
 // PeerJS object ** FOR PRODUCTION, GET YOUR OWN KEY at http://peerjs.com/peerserver **
 var peer = new Peer({ key: '2sfjo904akocg14i',
 						debug: 3,
-						config: {'iceServers': [
-						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'stun:stun1.l.google.com:19302' },
-						// { url: 'turn:numb.viagenie.ca', username:"lisa@learnfromlisa.com", credential:"22paris22"}
-						]}});
+						config: customConfig
+                    });
+
+console.log(customConfig);
 
 // On open, set the peer id
 peer.on('open', function(){
