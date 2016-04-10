@@ -14,12 +14,12 @@ navigator.getWebcam = ( navigator.getUserMedia ||
                          navigator.msGetUserMedia);
 
 // PeerJS object ** FOR PRODUCTION, GET YOUR OWN KEY at http://peerjs.com/peerserver **
-var peer = new Peer({ key: '2p9ffp7ol6p3nmi',
+var peer = new Peer({ key: '2sfjo904akocg14i',
 						debug: 3,
 						config: {'iceServers': [
 						{ url: 'stun:stun.l.google.com:19302' },
 						{ url: 'stun:stun1.l.google.com:19302' },
-						{ url: 'turn:numb.viagenie.ca', username:"lisa@learnfromlisa.com", credential:"22paris22"}
+						// { url: 'turn:numb.viagenie.ca', username:"lisa@learnfromlisa.com", credential:"22paris22"}
 						]}});
 
 // On open, set the peer id

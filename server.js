@@ -1,10 +1,11 @@
 var express = require('express');
 var app = express();
 
+app.use(express.static('.'));
 app.use(express.static('public'));
 
 app.get('/index.htm', function (req, res) {
-   res.sendFile( __dirname + "/" + "ps-webrtc-peerjs-start.html" );
+   res.sendFile( __dirname + "/" + "videochat.html" );
 })
 
 app.get('/process_get', function (req, res) {
@@ -20,7 +21,7 @@ app.get('/process_get', function (req, res) {
 
 var server = app.listen(8081, function () {
 
-  var host = server.address().port
+  var host = server.address().address
   var port = server.address().port
 
   console.log("Example app listening at http://%s:%s", host, port)
